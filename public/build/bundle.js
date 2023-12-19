@@ -595,35 +595,35 @@ var app = (function () {
     			button1 = element("button");
     			button1.textContent = "Não tem cadastro? Clique aqui";
     			attr_dev(h2, "class", "svelte-o26thg");
-    			add_location(h2, file$7, 16, 8, 432);
+    			add_location(h2, file$7, 22, 8, 425);
     			attr_dev(label0, "for", "usuario");
     			attr_dev(label0, "class", "svelte-o26thg");
-    			add_location(label0, file$7, 18, 12, 494);
+    			add_location(label0, file$7, 24, 12, 487);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "id", "usuario");
     			attr_dev(input0, "placeholder", "Digite seu usuário");
     			attr_dev(input0, "class", "svelte-o26thg");
-    			add_location(input0, file$7, 19, 12, 545);
+    			add_location(input0, file$7, 25, 12, 538);
     			attr_dev(div0, "class", "form-field svelte-o26thg");
-    			add_location(div0, file$7, 17, 8, 456);
+    			add_location(div0, file$7, 23, 8, 449);
     			attr_dev(label1, "for", "senha");
     			attr_dev(label1, "class", "svelte-o26thg");
-    			add_location(label1, file$7, 22, 12, 676);
+    			add_location(label1, file$7, 28, 12, 690);
     			attr_dev(input1, "type", "password");
     			attr_dev(input1, "id", "senha");
     			attr_dev(input1, "placeholder", "Digite sua senha");
     			attr_dev(input1, "class", "svelte-o26thg");
-    			add_location(input1, file$7, 23, 12, 723);
+    			add_location(input1, file$7, 29, 12, 737);
     			attr_dev(div1, "class", "form-field svelte-o26thg");
-    			add_location(div1, file$7, 21, 8, 638);
+    			add_location(div1, file$7, 27, 8, 652);
     			attr_dev(button0, "class", "svelte-o26thg");
-    			add_location(button0, file$7, 25, 8, 816);
-    			add_location(br0, file$7, 26, 8, 871);
-    			add_location(br1, file$7, 26, 12, 875);
+    			add_location(button0, file$7, 31, 8, 849);
+    			add_location(br0, file$7, 32, 8, 904);
+    			add_location(br1, file$7, 32, 12, 908);
     			attr_dev(button1, "class", "svelte-o26thg");
-    			add_location(button1, file$7, 27, 8, 889);
+    			add_location(button1, file$7, 33, 8, 922);
     			attr_dev(div2, "class", "login-form svelte-o26thg");
-    			add_location(div2, file$7, 15, 4, 398);
+    			add_location(div2, file$7, 21, 4, 391);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -636,11 +636,13 @@ var app = (function () {
     			append_dev(div0, label0);
     			append_dev(div0, t3);
     			append_dev(div0, input0);
+    			set_input_value(input0, /*usuario*/ ctx[1]);
     			append_dev(div2, t4);
     			append_dev(div2, div1);
     			append_dev(div1, label1);
     			append_dev(div1, t6);
     			append_dev(div1, input1);
+    			set_input_value(input1, /*senha*/ ctx[2]);
     			append_dev(div2, t7);
     			append_dev(div2, button0);
     			append_dev(div2, t9);
@@ -651,14 +653,24 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(button0, "click", /*fazerLogin*/ ctx[1], false, false, false, false),
-    					listen_dev(button1, "click", /*click_handler*/ ctx[2], false, false, false, false)
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[4]),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[5]),
+    					listen_dev(button0, "click", /*fazerLogin*/ ctx[3], false, false, false, false),
+    					listen_dev(button1, "click", /*click_handler*/ ctx[6], false, false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*usuario*/ 2 && input0.value !== /*usuario*/ ctx[1]) {
+    				set_input_value(input0, /*usuario*/ ctx[1]);
+    			}
+
+    			if (dirty & /*senha*/ 4 && input1.value !== /*senha*/ ctx[2]) {
+    				set_input_value(input1, /*senha*/ ctx[2]);
+    			}
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
@@ -683,10 +695,14 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Login', slots, []);
     	let { onNavigate } = $$props;
+    	let usuario = '';
+    	let senha = '';
 
     	async function fazerLogin() {
-    		const usuario = document.getElementById("usuario").value;
-    		const senha = document.getElementById("senha").value;
+    		if (!usuario || !senha) {
+    			alert("Todos os campos devem ser preenchidos!");
+    			return;
+    		}
 
     		if (usuario === "admin" && senha === "12345") {
     			onNavigate('Cursos');
@@ -707,23 +723,43 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Login> was created with unknown prop '${key}'`);
     	});
 
+    	function input0_input_handler() {
+    		usuario = this.value;
+    		$$invalidate(1, usuario);
+    	}
+
+    	function input1_input_handler() {
+    		senha = this.value;
+    		$$invalidate(2, senha);
+    	}
+
     	const click_handler = () => onNavigate('Cadastro');
 
     	$$self.$$set = $$props => {
     		if ('onNavigate' in $$props) $$invalidate(0, onNavigate = $$props.onNavigate);
     	};
 
-    	$$self.$capture_state = () => ({ onNavigate, fazerLogin });
+    	$$self.$capture_state = () => ({ onNavigate, usuario, senha, fazerLogin });
 
     	$$self.$inject_state = $$props => {
     		if ('onNavigate' in $$props) $$invalidate(0, onNavigate = $$props.onNavigate);
+    		if ('usuario' in $$props) $$invalidate(1, usuario = $$props.usuario);
+    		if ('senha' in $$props) $$invalidate(2, senha = $$props.senha);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [onNavigate, fazerLogin, click_handler];
+    	return [
+    		onNavigate,
+    		usuario,
+    		senha,
+    		fazerLogin,
+    		input0_input_handler,
+    		input1_input_handler,
+    		click_handler
+    	];
     }
 
     class Login extends SvelteComponentDev {

@@ -1,15 +1,21 @@
 <script>
     export let onNavigate
 
-    async function fazerLogin() {
-        const usuario = document.getElementById("usuario").value
-        const senha = document.getElementById("senha").value
-        if (usuario === "admin" && senha === "12345") {
-            onNavigate('Cursos')
-        } else {
-            alert("Usuário ou senha inválidos!")
-        }
+let usuario = ''
+let senha = ''
+
+async function fazerLogin() {
+    if (!usuario || !senha) {
+        alert("Todos os campos devem ser preenchidos!")
+        return
     }
+
+    if (usuario === "admin" && senha === "12345") {
+        onNavigate('Cursos')
+    } else {
+        alert("Usuário ou senha inválidos!")
+    }
+}
 </script>
 
 
@@ -17,11 +23,11 @@
         <h2>Login</h2>
         <div class="form-field">
             <label for="usuario">Usuário:</label>
-            <input type="text" id="usuario" placeholder="Digite seu usuário" />
+            <input bind:value={usuario} type="text" id="usuario" placeholder="Digite seu usuário" />
         </div>
         <div class="form-field">
             <label for="senha">Senha:</label>
-            <input type="password" id="senha" placeholder="Digite sua senha" />
+            <input bind:value={senha} type="password" id="senha" placeholder="Digite sua senha" />
         </div>
         <button on:click={fazerLogin}>Entrar</button>
         <br><br>
