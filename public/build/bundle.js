@@ -80,6 +80,9 @@ var app = (function () {
     function children(element) {
         return Array.from(element.childNodes);
     }
+    function set_input_value(input, value) {
+        input.value = value == null ? '' : value;
+    }
     function custom_event(type, detail, { bubbles = false, cancelable = false } = {}) {
         const e = document.createEvent('CustomEvent');
         e.initCustomEvent(type, bubbles, cancelable, detail);
@@ -810,51 +813,51 @@ var app = (function () {
     			button = element("button");
     			button.textContent = "Cadastrar";
     			attr_dev(h2, "class", "svelte-o26thg");
-    			add_location(h2, file$6, 11, 8, 216);
+    			add_location(h2, file$6, 28, 8, 592);
     			attr_dev(label0, "for", "usuario");
     			attr_dev(label0, "class", "svelte-o26thg");
-    			add_location(label0, file$6, 13, 12, 282);
+    			add_location(label0, file$6, 30, 12, 658);
     			attr_dev(input0, "type", "text");
     			attr_dev(input0, "id", "usuario");
     			attr_dev(input0, "placeholder", "Digite um nome de usuário");
     			attr_dev(input0, "class", "svelte-o26thg");
-    			add_location(input0, file$6, 14, 12, 341);
+    			add_location(input0, file$6, 31, 12, 717);
     			attr_dev(div0, "class", "form-field svelte-o26thg");
-    			add_location(div0, file$6, 12, 8, 244);
+    			add_location(div0, file$6, 29, 8, 620);
     			attr_dev(label1, "for", "email");
     			attr_dev(label1, "class", "svelte-o26thg");
-    			add_location(label1, file$6, 17, 12, 479);
+    			add_location(label1, file$6, 34, 12, 876);
     			attr_dev(input1, "type", "text");
     			attr_dev(input1, "id", "usuario");
     			attr_dev(input1, "placeholder", "Digite seu email");
     			attr_dev(input1, "class", "svelte-o26thg");
-    			add_location(input1, file$6, 18, 12, 526);
+    			add_location(input1, file$6, 35, 12, 923);
     			attr_dev(div1, "class", "form-field svelte-o26thg");
-    			add_location(div1, file$6, 16, 8, 441);
+    			add_location(div1, file$6, 33, 8, 838);
     			attr_dev(label2, "for", "senha");
     			attr_dev(label2, "class", "svelte-o26thg");
-    			add_location(label2, file$6, 21, 12, 655);
+    			add_location(label2, file$6, 38, 12, 1071);
     			attr_dev(input2, "type", "password");
     			attr_dev(input2, "id", "senha");
     			attr_dev(input2, "placeholder", "Digite sua senha");
     			attr_dev(input2, "class", "svelte-o26thg");
-    			add_location(input2, file$6, 22, 12, 702);
+    			add_location(input2, file$6, 39, 12, 1118);
     			attr_dev(div2, "class", "form-field svelte-o26thg");
-    			add_location(div2, file$6, 20, 8, 617);
+    			add_location(div2, file$6, 37, 8, 1033);
     			attr_dev(label3, "for", "senhac");
     			attr_dev(label3, "class", "svelte-o26thg");
-    			add_location(label3, file$6, 25, 12, 833);
+    			add_location(label3, file$6, 42, 12, 1268);
     			attr_dev(input3, "type", "password");
     			attr_dev(input3, "id", "senha");
     			attr_dev(input3, "placeholder", "Confirme sua senha");
     			attr_dev(input3, "class", "svelte-o26thg");
-    			add_location(input3, file$6, 26, 12, 891);
+    			add_location(input3, file$6, 43, 12, 1326);
     			attr_dev(div3, "class", "form-field svelte-o26thg");
-    			add_location(div3, file$6, 24, 8, 795);
+    			add_location(div3, file$6, 41, 8, 1230);
     			attr_dev(button, "class", "svelte-o26thg");
-    			add_location(button, file$6, 28, 8, 986);
+    			add_location(button, file$6, 45, 8, 1449);
     			attr_dev(div4, "class", "login-form svelte-o26thg");
-    			add_location(div4, file$6, 10, 4, 182);
+    			add_location(div4, file$6, 27, 4, 558);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -867,36 +870,63 @@ var app = (function () {
     			append_dev(div0, label0);
     			append_dev(div0, t3);
     			append_dev(div0, input0);
+    			set_input_value(input0, /*usuario*/ ctx[0]);
     			append_dev(div4, t4);
     			append_dev(div4, div1);
     			append_dev(div1, label1);
     			append_dev(div1, t6);
     			append_dev(div1, input1);
+    			set_input_value(input1, /*email*/ ctx[1]);
     			append_dev(div4, t7);
     			append_dev(div4, div2);
     			append_dev(div2, label2);
     			append_dev(div2, t9);
     			append_dev(div2, input2);
+    			set_input_value(input2, /*senha*/ ctx[2]);
     			append_dev(div4, t10);
     			append_dev(div4, div3);
     			append_dev(div3, label3);
     			append_dev(div3, t12);
     			append_dev(div3, input3);
+    			set_input_value(input3, /*confirmarSenha*/ ctx[3]);
     			append_dev(div4, t13);
     			append_dev(div4, button);
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*fazerCadastro*/ ctx[0], false, false, false, false);
+    				dispose = [
+    					listen_dev(input0, "input", /*input0_input_handler*/ ctx[6]),
+    					listen_dev(input1, "input", /*input1_input_handler*/ ctx[7]),
+    					listen_dev(input2, "input", /*input2_input_handler*/ ctx[8]),
+    					listen_dev(input3, "input", /*input3_input_handler*/ ctx[9]),
+    					listen_dev(button, "click", /*fazerCadastro*/ ctx[4], false, false, false, false)
+    				];
+
     				mounted = true;
     			}
     		},
-    		p: noop,
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*usuario*/ 1 && input0.value !== /*usuario*/ ctx[0]) {
+    				set_input_value(input0, /*usuario*/ ctx[0]);
+    			}
+
+    			if (dirty & /*email*/ 2 && input1.value !== /*email*/ ctx[1]) {
+    				set_input_value(input1, /*email*/ ctx[1]);
+    			}
+
+    			if (dirty & /*senha*/ 4 && input2.value !== /*senha*/ ctx[2]) {
+    				set_input_value(input2, /*senha*/ ctx[2]);
+    			}
+
+    			if (dirty & /*confirmarSenha*/ 8 && input3.value !== /*confirmarSenha*/ ctx[3]) {
+    				set_input_value(input3, /*confirmarSenha*/ ctx[3]);
+    			}
+    		},
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(div4);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -915,8 +945,22 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Cadastro', slots, []);
     	let { onNavigate } = $$props;
+    	let usuario = '';
+    	let email = '';
+    	let senha = '';
+    	let confirmarSenha = '';
 
     	async function fazerCadastro() {
+    		if (!usuario || !email || !senha || !confirmarSenha) {
+    			alert("Todos os campos devem ser preenchidos!");
+    			return;
+    		}
+
+    		if (senha !== confirmarSenha) {
+    			alert("As senhas não coincidem!");
+    			return;
+    		}
+
     		alert("Usuário cadastrado com sucesso");
     		onNavigate('Cursos');
     	}
@@ -933,27 +977,69 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Cadastro> was created with unknown prop '${key}'`);
     	});
 
+    	function input0_input_handler() {
+    		usuario = this.value;
+    		$$invalidate(0, usuario);
+    	}
+
+    	function input1_input_handler() {
+    		email = this.value;
+    		$$invalidate(1, email);
+    	}
+
+    	function input2_input_handler() {
+    		senha = this.value;
+    		$$invalidate(2, senha);
+    	}
+
+    	function input3_input_handler() {
+    		confirmarSenha = this.value;
+    		$$invalidate(3, confirmarSenha);
+    	}
+
     	$$self.$$set = $$props => {
-    		if ('onNavigate' in $$props) $$invalidate(1, onNavigate = $$props.onNavigate);
+    		if ('onNavigate' in $$props) $$invalidate(5, onNavigate = $$props.onNavigate);
     	};
 
-    	$$self.$capture_state = () => ({ onNavigate, fazerCadastro });
+    	$$self.$capture_state = () => ({
+    		onNavigate,
+    		usuario,
+    		email,
+    		senha,
+    		confirmarSenha,
+    		fazerCadastro
+    	});
 
     	$$self.$inject_state = $$props => {
-    		if ('onNavigate' in $$props) $$invalidate(1, onNavigate = $$props.onNavigate);
+    		if ('onNavigate' in $$props) $$invalidate(5, onNavigate = $$props.onNavigate);
+    		if ('usuario' in $$props) $$invalidate(0, usuario = $$props.usuario);
+    		if ('email' in $$props) $$invalidate(1, email = $$props.email);
+    		if ('senha' in $$props) $$invalidate(2, senha = $$props.senha);
+    		if ('confirmarSenha' in $$props) $$invalidate(3, confirmarSenha = $$props.confirmarSenha);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [fazerCadastro, onNavigate];
+    	return [
+    		usuario,
+    		email,
+    		senha,
+    		confirmarSenha,
+    		fazerCadastro,
+    		onNavigate,
+    		input0_input_handler,
+    		input1_input_handler,
+    		input2_input_handler,
+    		input3_input_handler
+    	];
     }
 
     class Cadastro extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { onNavigate: 1 });
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { onNavigate: 5 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,

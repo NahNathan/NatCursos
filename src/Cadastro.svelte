@@ -1,7 +1,24 @@
+
+
 <script>
     export let onNavigate
 
+    let usuario = ''
+    let email = ''
+    let senha = ''
+    let confirmarSenha = ''
+
     async function fazerCadastro() {
+        if (!usuario || !email || !senha || !confirmarSenha) {
+            alert("Todos os campos devem ser preenchidos!")
+            return
+        }
+
+        if (senha !== confirmarSenha) {
+            alert("As senhas não coincidem!")
+            return
+        }
+
         alert("Usuário cadastrado com sucesso")
         onNavigate('Cursos')
     }
@@ -12,19 +29,19 @@
         <h2>Cadastrar</h2>
         <div class="form-field">
             <label for="usuario">Nome de usuário:</label>
-            <input type="text" id="usuario" placeholder="Digite um nome de usuário" />
+            <input bind:value={usuario} type="text" id="usuario" placeholder="Digite um nome de usuário" />
         </div>
         <div class="form-field">
             <label for="email">Email:</label>
-            <input type="text" id="usuario" placeholder="Digite seu email" />
+            <input bind:value={email} type="text" id="usuario" placeholder="Digite seu email" />
         </div>
         <div class="form-field">
             <label for="senha">Senha:</label>
-            <input type="password" id="senha" placeholder="Digite sua senha" />
+            <input bind:value={senha} type="password" id="senha" placeholder="Digite sua senha" />
         </div>
         <div class="form-field">
             <label for="senhac">Confirmar Senha:</label>
-            <input type="password" id="senha" placeholder="Confirme sua senha" />
+            <input bind:value={confirmarSenha} type="password" id="senha" placeholder="Confirme sua senha" />
         </div>
         <button on:click={fazerCadastro}>Cadastrar</button>
     </div>
