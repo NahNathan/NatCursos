@@ -13,15 +13,16 @@
 <div class="informacoes-curso">
     <h1>{curso.nome}</h1>
     <h4>{curso.descrição}</h4>
+    <div id="video">
     <iframe
-        width="560"
-        height="315"
+        width="1120"
+        height="630"
         src={curso.video}
         title="YouTube video player"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
-    /> <br><br><br>
+    /></div> <br><br><br>
     <button on:click={() => onNavigate('Perfil')}>Curso Concluído✅</button>
 </div>
 
@@ -34,6 +35,11 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.9);
         max-width: 80vw;
         position: relative;
+    }
+
+    #video{
+        justify-content: center;
+        display: flex;
     }
 
     button {

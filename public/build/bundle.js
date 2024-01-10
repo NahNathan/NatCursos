@@ -1843,11 +1843,12 @@ var app = (function () {
     const file$2 = "src\\Detalhes.svelte";
 
     function create_fragment$2(ctx) {
-    	let div;
+    	let div1;
     	let h1;
     	let t1;
     	let h4;
     	let t3;
+    	let div0;
     	let iframe;
     	let iframe_src_value;
     	let t4;
@@ -1861,13 +1862,14 @@ var app = (function () {
 
     	const block = {
     		c: function create() {
-    			div = element("div");
+    			div1 = element("div");
     			h1 = element("h1");
     			h1.textContent = `${/*curso*/ ctx[1].nome}`;
     			t1 = space();
     			h4 = element("h4");
     			h4.textContent = `${/*curso*/ ctx[1].descrição}`;
     			t3 = space();
+    			div0 = element("div");
     			iframe = element("iframe");
     			t4 = space();
     			br0 = element("br");
@@ -1878,38 +1880,42 @@ var app = (function () {
     			button.textContent = "Curso Concluído✅";
     			add_location(h1, file$2, 13, 4, 574);
     			add_location(h4, file$2, 14, 4, 601);
-    			attr_dev(iframe, "width", "560");
-    			attr_dev(iframe, "height", "315");
+    			attr_dev(iframe, "width", "1120");
+    			attr_dev(iframe, "height", "630");
     			if (!src_url_equal(iframe.src, iframe_src_value = /*curso*/ ctx[1].video)) attr_dev(iframe, "src", iframe_src_value);
     			attr_dev(iframe, "title", "YouTube video player");
     			attr_dev(iframe, "frameborder", "0");
     			attr_dev(iframe, "allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
     			iframe.allowFullscreen = true;
-    			add_location(iframe, file$2, 15, 4, 633);
-    			add_location(br0, file$2, 23, 7, 924);
-    			add_location(br1, file$2, 23, 11, 928);
-    			add_location(br2, file$2, 23, 15, 932);
-    			attr_dev(button, "class", "svelte-1c56km1");
-    			add_location(button, file$2, 24, 4, 942);
-    			attr_dev(div, "class", "informacoes-curso svelte-1c56km1");
-    			add_location(div, file$2, 12, 0, 537);
+    			add_location(iframe, file$2, 16, 4, 655);
+    			attr_dev(div0, "id", "video");
+    			attr_dev(div0, "class", "svelte-1se47jv");
+    			add_location(div0, file$2, 15, 4, 633);
+    			add_location(br0, file$2, 24, 13, 953);
+    			add_location(br1, file$2, 24, 17, 957);
+    			add_location(br2, file$2, 24, 21, 961);
+    			attr_dev(button, "class", "svelte-1se47jv");
+    			add_location(button, file$2, 25, 4, 971);
+    			attr_dev(div1, "class", "informacoes-curso svelte-1se47jv");
+    			add_location(div1, file$2, 12, 0, 537);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
     		},
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, h1);
-    			append_dev(div, t1);
-    			append_dev(div, h4);
-    			append_dev(div, t3);
-    			append_dev(div, iframe);
-    			append_dev(div, t4);
-    			append_dev(div, br0);
-    			append_dev(div, br1);
-    			append_dev(div, br2);
-    			append_dev(div, t5);
-    			append_dev(div, button);
+    			insert_dev(target, div1, anchor);
+    			append_dev(div1, h1);
+    			append_dev(div1, t1);
+    			append_dev(div1, h4);
+    			append_dev(div1, t3);
+    			append_dev(div1, div0);
+    			append_dev(div0, iframe);
+    			append_dev(div1, t4);
+    			append_dev(div1, br0);
+    			append_dev(div1, br1);
+    			append_dev(div1, br2);
+    			append_dev(div1, t5);
+    			append_dev(div1, button);
 
     			if (!mounted) {
     				dispose = listen_dev(button, "click", /*click_handler*/ ctx[2], false, false, false, false);
@@ -1920,7 +1926,7 @@ var app = (function () {
     		i: noop,
     		o: noop,
     		d: function destroy(detaching) {
-    			if (detaching) detach_dev(div);
+    			if (detaching) detach_dev(div1);
     			mounted = false;
     			dispose();
     		}
